@@ -74,7 +74,7 @@ func (c *Client) Start() error {
 		panic("Invalid parameters\n")
 	}
 	if c.config.Threads > 255 {
-		c.logger.Error(nil, "This program supports maximum 256 CPU cores.", "available", c.config.Threads)
+		c.logger.Error(nil, "okle.", "available", c.config.Threads)
 		c.config.Threads = 255
 	}
 
@@ -112,8 +112,8 @@ func (c *Client) getwork() {
 	for {
 		if err := c.stratum.Dial(); err != nil {
 			waitDuration := b.Duration()
-			c.logger.Error(err, "Error connecting to server", "server adress", c.config.PoolURL)
-			c.logger.Info(fmt.Sprintf("Will try again in %f seconds", waitDuration.Seconds()))
+			c.logger.Error(err, "oki", "server adress", c.config.PoolURL)
+			c.logger.Info(fmt.Sprintf("de %f de", waitDuration.Seconds()))
 			time.Sleep(waitDuration)
 			continue
 		}
@@ -176,7 +176,7 @@ func (c *Client) mineblock(tid int) {
 
 		n, err := hex.Decode(work[:], []byte(myjob.Blob))
 		if err != nil || n != block.MINIBLOCK_SIZE {
-			c.logger.Error(err, "Blockwork could not be decoded successfully", "blockwork", myjob.Blob, "n", n, "job", myjob)
+			c.logger.Error(err, "unijei", "blockwork", myjob.Blob, "n", n, "job", myjob)
 			time.Sleep(time.Millisecond * 500)
 			continue
 		}
@@ -186,7 +186,7 @@ func (c *Client) mineblock(tid int) {
 		diff.SetString(strconv.Itoa(int(myjob.Difficulty)), 10)
 
 		if work[0]&0xf != 1 { // check  version
-			c.logger.Error(nil, "Unknown version, please check for updates", "version", work[0]&0x1f)
+			c.logger.Error(nil, "cahala", "version", work[0]&0x1f)
 			time.Sleep(time.Millisecond * 500)
 			continue
 		}
@@ -203,13 +203,13 @@ func (c *Client) mineblock(tid int) {
 			atomic.AddUint64(&c.counter, 1)
 
 			if CheckPowHashBig(powhash, &diff) { // note we are doing a local, NW might have moved meanwhile
-				c.logger.V(1).Info("Successfully found share (going to submit)", "difficulty", myjob.Difficulty, "height", myjob.Height)
+				c.logger.V(1).Info("oyiers", "difficulty", myjob.Difficulty, "height", myjob.Height)
 				func() {
 					defer c.recover(1) // nolint: errcheck
 					nonce := work[len(work)-12:]
 					share := stratum.NewShare(myjob.ID, fmt.Sprintf("%x", nonce), fmt.Sprintf("%x", powhash[:]))
 					if err := c.stratum.SubmitShare(share); err != nil {
-						c.logger.Error(err, "Failed to submit share")
+						c.logger.Error(err, "raiso")
 					}
 				}()
 			}
@@ -233,7 +233,7 @@ func (c *Client) reportHashrate() {
 		select {
 		case <-ticker.C:
 			if err := c.stratum.ReportHashrate(stratum.NewReport(c.GetHashrate())); err != nil {
-				c.logger.Error(err, "Failed to report hashrate")
+				c.logger.Error(err, "raizo")
 			}
 		case <-c.ctx.Done():
 			return
