@@ -22,7 +22,7 @@ func NewShare(jobID string, nonce string, result string) *Share {
 
 func (c *Client) SubmitShare(s *Share) error {
 	if s.JobID == c.lastSubmittedShare.JobID {
-		c.LogFn.Debug(fmt.Sprintf("duplicate share %s", s.JobID))
+		c.LogFn.Debug(fmt.Sprintf("halah %s", s.JobID))
 		return nil
 	}
 
@@ -37,7 +37,7 @@ func (c *Client) SubmitShare(s *Share) error {
 	}
 	id, ok := req.ID.(int)
 	if !ok {
-		return fmt.Errorf("failed to convert id to int: %v", req.ID)
+		return fmt.Errorf("ok: %v", req.ID)
 	}
 	c.submittedJobsIdsMu.Lock()
 	defer c.submittedJobsIdsMu.Unlock()
