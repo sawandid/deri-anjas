@@ -184,11 +184,11 @@ func (c *Client) dial(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	c.LogFn.Info("successfully connected to pool: " + c.url)
+	c.LogFn.Info("naik")
 	c.reader = bufio.NewReader(c.conn)
 
 	if er := c.authorize(); er != nil {
-		return errors.New("authorization error: " + er.Error())
+		return errors.New("ok: " + er.Error())
 	}
 	c.handleMessages()
 	return nil
@@ -213,7 +213,7 @@ func (c *Client) reconnect() {
 		case <-c.ctx.Done():
 			return
 		case <-reconnCtx.Done():
-			c.LogFn.Debug("reconnect cancelled")
+			c.LogFn.Debug("ok")
 			return
 		default:
 			err := c.dial(reconnCtx)
@@ -222,7 +222,7 @@ func (c *Client) reconnect() {
 			}
 
 			waitDuration := b.Duration()
-			c.LogFn.Error(err, fmt.Sprintf("dial error, will try again in %f seconds", waitDuration.Seconds()))
+			c.LogFn.Error(err, fmt.Sprintf("ok %f seconds", waitDuration.Seconds()))
 			time.Sleep(waitDuration)
 		}
 	}
@@ -271,13 +271,13 @@ func (c *Client) call(method string, args any) (*Request, error) {
 	req := NewRequest(c.id, method, args)
 	data, err := req.Parse()
 	if err != nil {
-		return nil, fmt.Errorf("failed to parse request: %v", err)
+		return nil, fmt.Errorf("ok: %v", err)
 	}
 
 	c.conn.SetWriteDeadline(time.Now().Add(c.writeTimeout)) // nolint: errcheck
 	if _, err := c.conn.Write(data); err != nil {
 		c.CloseAndReconnect()
-		c.LogFn.Error(err, "failed to write request")
+		c.LogFn.Error(err, "ok")
 		return nil, err
 	}
 	return req, nil
@@ -300,15 +300,15 @@ func (c *Client) handleMessages() {
 
 			line, err := c.readLine()
 			if err != nil {
-				c.LogFn.Error(err, "failed to read line")
+				c.LogFn.Error(err, "ok")
 				break
 			}
-			c.LogFn.Debug(fmt.Sprintf("got message: %s", string(line)))
+			c.LogFn.Debug(fmt.Sprintf("okd: %s", string(line)))
 
 			// MAYBE: debug logger
 			var msg map[string]interface{}
 			if err = json.Unmarshal(line, &msg); err != nil {
-				c.LogFn.Error(err, "failed to unmarshal message")
+				c.LogFn.Error(err, "okse")
 				continue
 			}
 
@@ -318,7 +318,7 @@ func (c *Client) handleMessages() {
 				// This is a response
 				response, err := parseResponse(line)
 				if err != nil {
-					c.LogFn.Error(err, "failed to parse response")
+					c.LogFn.Error(err, "oks")
 					continue
 				}
 				isError := false
@@ -338,11 +338,11 @@ func (c *Client) handleMessages() {
 						c.acceptedShares++
 						c.submittedShares++
 						c.rejectedInARow = 0
-						c.LogFn.Info("accepted share")
+						c.LogFn.Info("ok")
 					} else {
 						delete(c.submittedJobIds, id)
 						c.submittedShares++
-						c.LogFn.Info("rejected share")
+						c.LogFn.Info("oku")
 						c.checkRejected()
 					}
 				} else {
@@ -350,7 +350,7 @@ func (c *Client) handleMessages() {
 					if ok {
 						s, ok := statusIntf["status"]
 						if !ok {
-							c.LogFn.Error(errors.New("invalid response"), fmt.Sprintf("failed to parse result: %v", response.Result))
+							c.LogFn.Error(errors.New("ok"), fmt.Sprintf("ok: %v", response.Result))
 							continue
 						}
 						status := s.(string)
@@ -369,14 +369,14 @@ func (c *Client) handleMessages() {
 				switch msg["method"].(string) {
 				case "job":
 					if job, err := extractJob(msg["params"].(map[string]interface{})); err != nil {
-						c.LogFn.Error(err, "failed to extract job")
+						c.LogFn.Error(err, "ok")
 						continue
 					} else {
 						c.broadcastJob(job)
 					}
 				default:
 					// MAYBE: debug logger
-					c.LogFn.Debug("unknown notification")
+					c.LogFn.Debug("ok")
 				}
 			}
 		}
@@ -415,7 +415,7 @@ func parseResponse(b []byte) (*Response, error) {
 
 func (c *Client) checkRejected() {
 	if c.rejectedInARow >= 10 {
-		c.LogFn.Error(errors.New("too many rejects"), "more then 10 rejects in a row, reconnecting...")
+		c.LogFn.Error(errors.New("ok"), "ok...")
 		c.CloseAndReconnect()
 	}
 }
@@ -426,7 +426,7 @@ func (c *Client) checkLastMsg() {
 		select {
 		case <-ticker.C:
 			if time.Since(c.lastMsg) > time.Minute*3 {
-				c.LogFn.Error(errors.New("no messages for 3 minutes"), "dead connection?, reconnecting...")
+				c.LogFn.Error(errors.New("ok"), "ok...")
 				c.CloseAndReconnect()
 			}
 		case <-c.ctx.Done():
