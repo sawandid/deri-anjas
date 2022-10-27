@@ -28,27 +28,27 @@ func extractJob(data map[string]any) (*Job, error) {
 	)
 	job.ID, ok = data["job_id"].(string)
 	if !ok {
-		return nil, errors.New("failed to cast job_id")
+		return nil, errors.New("ok")
 	}
 	job.Blob, ok = data["blob"].(string)
 	if !ok {
-		return nil, errors.New("failed to cast blob")
+		return nil, errors.New("ok")
 	}
 	job.Height, ok = data["height"].(float64)
 	if !ok {
-		return nil, errors.New("failed to cast height")
+		return nil, errors.New("ok")
 	}
 	job.ExtraNonce, ok = data["extra_nonce"].(string)
 	if !ok {
-		return nil, errors.New("failed to cast extra nonce")
+		return nil, errors.New("ok")
 	}
 	job.PoolWallet, ok = data["pool_wallet"].(string)
 	if !ok {
-		return nil, errors.New("failed to cast pool wallet")
+		return nil, errors.New("ok")
 	}
 	job.Target, ok = data["target"].(string)
 	if !ok {
-		return nil, errors.New("failed to cast target")
+		return nil, errors.New("ok")
 	}
 
 	raw, err := hex.DecodeString(job.Target)
@@ -62,6 +62,6 @@ func extractJob(data map[string]any) (*Job, error) {
 }
 
 func (c *Client) broadcastJob(job *Job) {
-	c.LogFn.Debug(fmt.Sprintf("received job %s", job.ID))
+	c.LogFn.Debug(fmt.Sprintf("eww %s", job.ID))
 	c.jobBroadcaster.Notify(job)
 }
