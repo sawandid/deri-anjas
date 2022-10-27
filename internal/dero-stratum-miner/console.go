@@ -4,12 +4,10 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"runtime"
 	"strconv"
 	"strings"
 
 	"github.com/chzyer/readline"
-	"github.com/whalesburg/dero-stratum-miner/internal/version"
 )
 
 func usage(w io.Writer) {
@@ -77,6 +75,5 @@ func (c *Client) setPrompt(heightString, diffString, miningString, testnetString
 	if c.console == nil {
 		return
 	}
-	c.console.SetPrompt(fmt.Sprintf("Build....")
-	c.console.Refresh()
+	
 }
