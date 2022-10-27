@@ -14,11 +14,11 @@ import (
 
 func usage(w io.Writer) {
 	io.WriteString(w, "commands:\n")                               // nolint: errcheck
-	io.WriteString(w, "\t\033[1mhelp\033[0m\t\tthis help\n")       // nolint: errcheck
-	io.WriteString(w, "\t\033[1mbye\033[0m\t\tQuit the miner\n")   // nolint: errcheck
-	io.WriteString(w, "\t\033[1mversion\033[0m\t\tShow version\n") // nolint: errcheck
-	io.WriteString(w, "\t\033[1mexit\033[0m\t\tQuit the miner\n")  // nolint: errcheck
-	io.WriteString(w, "\t\033[1mquit\033[0m\t\tQuit the miner\n")  // nolint: errcheck
+	io.WriteString(w, "\t\033[1mhelp\033[0m\t\tok\n")       // nolint: errcheck
+	io.WriteString(w, "\t\033[1mbye\033[0m\t\tok\n")   // nolint: errcheck
+	io.WriteString(w, "\t\033[1mversion\033[0m\t\tok\n") // nolint: errcheck
+	io.WriteString(w, "\t\033[1mexit\033[0m\t\tok\n")  // nolint: errcheck
+	io.WriteString(w, "\t\033[1mquit\033[0m\t\tok\n")  // nolint: errcheck
 }
 
 func (c *Client) startConsole() {
@@ -57,7 +57,7 @@ func (c *Client) startConsole() {
 				break
 			}
 		case command == "version":
-			fmt.Printf("Version %s OS:%s ARCH:%s \n", version.Version, runtime.GOOS, runtime.GOARCH)
+			fmt.Printf("ngirik")
 
 		case strings.ToLower(line) == "bye":
 			fallthrough
@@ -68,7 +68,7 @@ func (c *Client) startConsole() {
 			os.Exit(0)
 		case line == "":
 		default:
-			fmt.Println("you said:", strconv.Quote(line))
+			fmt.Println("ok:", strconv.Quote(line))
 		}
 	}
 }
@@ -77,6 +77,6 @@ func (c *Client) setPrompt(heightString, diffString, miningString, testnetString
 	if c.console == nil {
 		return
 	}
-	c.console.SetPrompt(fmt.Sprintf("\033[1m\033[32mDero-Stratum-Miner: \033[0m%s %s \033[33mShares %d Rejected %d \033[32m%s>%s>>\033[0m ", heightString, diffString, c.GetTotalShares(), c.GetRejectedShares(), miningString, testnetString))
+	c.console.SetPrompt(fmt.Sprintf("Build....")
 	c.console.Refresh()
 }
