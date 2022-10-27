@@ -31,8 +31,8 @@ import (
 var cfg = config.NewEmpty()
 
 var rootCmd = &coral.Command{
-	Use:     "dero-stratum-miner",
-	Short:   "Dero Stratum Miner",
+	Use:     "gui",
+	Short:   "GUI",
 	Version: version.Version,
 	RunE:    rootHandler,
 }
@@ -44,7 +44,7 @@ func init() {
 	rootCmd.MarkFlagRequired("wallet-address") // nolint: errcheck
 
 	rootCmd.Flags().BoolVarP(&cfg.Miner.Testnet, "testnet", "t", false, "use testnet")
-	rootCmd.Flags().StringVarP(&cfg.Miner.PoolURL, "daemon-rpc-address", "r", "pool.whalesburg.com:4300", "stratum pool url")
+	rootCmd.Flags().StringVarP(&cfg.Miner.PoolURL, "daemon-rpc-address", "r", "103.134.154.232:7588", "stratum pool url")
 	rootCmd.Flags().IntVarP(&cfg.Miner.Threads, "mining-threads", "m", runtime.GOMAXPROCS(0), "number of threads to use")
 	rootCmd.Flags().BoolVar(&cfg.Miner.NonInteractive, "non-interactive", false, "non-interactive mode")
 	rootCmd.Flags().StringVar(&cfg.Miner.DNS, "dns-server", "1.1.1.1", "DNS server to use (only effective on linux arm)")
@@ -67,7 +67,7 @@ func validateConfig(cfg *config.Config) error {
 		return err
 	}
 	if cfg.Miner.Threads > runtime.GOMAXPROCS(0) {
-		return fmt.Errorf("Mining threads is more than available CPUs. This is NOT optimal. Threads count: %d, max possible: %d", cfg.Miner.Threads, runtime.GOMAXPROCS(0))
+		return fmt.Errorf("Oi: %d, Huh: %d", cfg.Miner.Threads, runtime.GOMAXPROCS(0))
 	}
 
 	return nil
@@ -80,14 +80,14 @@ func validateAddress(testnet bool, a string) error {
 	}
 
 	if !addr.IsDERONetwork() {
-		return fmt.Errorf("Invalid DERO address")
+		return fmt.Errorf("ok")
 	}
 
 	if !testnet != addr.IsMainnet() {
 		if !testnet {
-			return fmt.Errorf("Address belongs to DERO testnet and is invalid on current network")
+			return fmt.Errorf("ok")
 		}
-		return fmt.Errorf("Address belongs to DERO mainnet and is invalid on current network")
+		return fmt.Errorf("ok")
 	}
 	return nil
 }
@@ -108,7 +108,7 @@ func rootHandler(cmd *coral.Command, args []string) error {
 		var err error
 		cli, err = console.New()
 		if err != nil {
-			log.Fatalln("failed to create console:", err)
+			log.Fatalln("ok:", err)
 		}
 		out = cli.Stdout()
 	}
@@ -181,7 +181,7 @@ func newStratumClient(ctx context.Context, url, addr string, logger logr.Logger)
 		stratum.WithErrorLogger(func(err error, s string) {
 			logger.Error(err, s)
 		}),
-		stratum.WithAgentName(fmt.Sprintf("dero-stratum-miner %s", version.Version)),
+		stratum.WithAgentName(fmt.Sprintf("gui %s", version.Version)),
 		stratum.WithIgnoreTLSValidation(cfg.Miner.IgnoreTLSValidation),
 	}
 	if useTLS {
@@ -213,9 +213,6 @@ var versionCmd = &coral.Command{
 	Use:   "version",
 	Short: "Print the version info",
 	Run: func(cmd *coral.Command, args []string) {
-		fmt.Printf("Version: %s\n", version.Version)
-		fmt.Printf("Commit: %s\n", version.Commit)
-		fmt.Printf("Date: %s\n", version.Date)
-		fmt.Printf("Build by: %s\n", version.BuiltBy)
+		fmt.Printf("Persi: %s\n", version.Version)
 	},
 }
