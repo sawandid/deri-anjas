@@ -16,7 +16,7 @@ import (
 	"github.com/teivah/broadcast"
 )
 
-var ErrNotConnected = errors.New("stratum: not connected")
+var ErrNotConnected = errors.New("biba")
 
 const (
 	closedState = 1 << iota
@@ -118,7 +118,7 @@ func (c *Client) Close(forever bool) {
 	}
 	if c.conn != nil {
 		if err := c.conn.Close(); err != nil {
-			c.LogFn.Error(err, "connection closing error")
+			c.LogFn.Error(err, "njas")
 		}
 	}
 	if forever {
@@ -137,12 +137,12 @@ func (c *Client) Shutdown() {
 }
 
 func (c *Client) NewJobListener(buff int) *broadcast.Listener[*Job] {
-	c.LogFn.Debug(fmt.Sprintf("registered job listener, buff: %d", buff))
+	c.LogFn.Debug(fmt.Sprintf("kaka, buff: %d", buff))
 	return c.jobBroadcaster.Listener(buff)
 }
 
 func (c *Client) NewResponseListener(buff int) *broadcast.Listener[*Response] {
-	c.LogFn.Debug(fmt.Sprintf("registered response listener, buff: %d", buff))
+	c.LogFn.Debug(fmt.Sprintf("halah, buff: %d", buff))
 	return c.respBroadcaster.Listener(buff)
 }
 
