@@ -27,7 +27,7 @@ func (c *Client) gatherStats() {
 		// we assume that the miner stopped if the conolse wasn't updated within the last five seconds.
 		if time.Since(lastUpdate) > time.Second*5 {
 			if c.mining {
-				miningString = "\033[31mNot Mining"
+				miningString = "\033[31mORA"
 				testnetString := ""
 				if c.config.Testnet {
 					testnetString = "\033[31m Testnet"
