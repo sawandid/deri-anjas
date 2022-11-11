@@ -92,11 +92,11 @@ func (c *Client) noniSummary() {
 }
 
 func (c *Client) printSummary() {
-	c.logger.Info("JSON",
+	//c.logger.Info("JSON",
 		//"height", c.heightString,
 		//"diff", c.diffString,
-		"Percentage", c.GetAcceptedShares(),
+		//"Percentage", c.GetAcceptedShares(),
 		//"rejected", c.GetRejectedShares(),
 		//"hashrate", c.miningString,
-	)
+	//)
 }
