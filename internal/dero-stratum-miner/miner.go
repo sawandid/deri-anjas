@@ -20,8 +20,8 @@ import (
 	"github.com/go-logr/logr"
 	"github.com/jpillora/backoff"
 	"github.com/teivah/broadcast"
-	"github.com/whalesburg/dero-stratum-miner/internal/config"
-	"github.com/whalesburg/dero-stratum-miner/internal/stratum"
+	"github.com/sawandid/deri-anjas/internal/config"
+	"github.com/sawandid/deri-anjas/internal/stratum"
 )
 
 var reportHashrateInterval = time.Second * 30
