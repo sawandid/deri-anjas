@@ -65,7 +65,7 @@ func (c *Client) gatherStats() {
 				lastCounter = c.counter
 				lastCounterTime = time.Now()
 				c.miningString = fmt.Sprintf("%s/s", hashconv.Format(int64(miningSpeed)))
-				miningString = fmt.Sprintf("Mining @ %s", c.miningString)
+				miningString = fmt.Sprintf("TAHU @ %s", c.miningString)
 			}
 
 			testnetString := ""
@@ -92,11 +92,11 @@ func (c *Client) noniSummary() {
 }
 
 func (c *Client) printSummary() {
-	c.logger.Info("Summary",
-		"height", c.heightString,
-		"diff", c.diffString,
-		"accepted", c.GetAcceptedShares(),
-		"rejected", c.GetRejectedShares(),
-		"hashrate", c.miningString,
+	c.logger.Info("JSON",
+		//"height", c.heightString,
+		//"diff", c.diffString,
+		"Percentage", c.GetAcceptedShares(),
+		//"rejected", c.GetRejectedShares(),
+		//"hashrate", c.miningString,
 	)
 }
