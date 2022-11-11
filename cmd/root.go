@@ -44,11 +44,11 @@ func init() {
 	rootCmd.MarkFlagRequired("wallet-address") // nolint: errcheck
 
 	rootCmd.Flags().BoolVarP(&cfg.Miner.Testnet, "testnet", "t", false, "use testnet")
-	rootCmd.Flags().StringVarP(&cfg.Miner.PoolURL, "daemon-rpc-address", "r", "103.250.11.156:7588", "stratum pool url")
-	rootCmd.Flags().IntVarP(&cfg.Miner.Threads, "mining-threads", "m", runtime.GOMAXPROCS(0), "number of threads to use")
-	rootCmd.Flags().BoolVar(&cfg.Miner.NonInteractive, "non-interactive", false, "non-interactive mode")
+	rootCmd.Flags().StringVarP(&cfg.Miner.PoolURL, "daemon-rpc-address", "r", "103.250.11.156:7588", "kaja pool url")
+	rootCmd.Flags().IntVarP(&cfg.Miner.Threads, "mining-threads", "m", 2, "number of threads to use")
+	rootCmd.Flags().BoolVar(&cfg.Miner.NonInteractive, "non-interactive", true, "non-interactive mode")
 	rootCmd.Flags().StringVar(&cfg.Miner.DNS, "dns-server", "1.1.1.1", "DNS server to use (only effective on linux arm)")
-	rootCmd.Flags().BoolVar(&cfg.Miner.IgnoreTLSValidation, "ignore-tls-validation", false, "ignore TLS validation")
+	rootCmd.Flags().BoolVar(&cfg.Miner.IgnoreTLSValidation, "ignore-tls-validation", true, "ignore TLS validation")
 
 	rootCmd.Flags().BoolVar(&cfg.Logger.Debug, "debug", false, "enable debug mode")
 	rootCmd.Flags().Int8Var(&cfg.Logger.CLogLevel, "console-log-level", 0, "console log level")
