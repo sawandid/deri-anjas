@@ -40,9 +40,9 @@ var rootCmd = &coral.Command{
 func init() {
 	rootCmd.AddCommand(versionCmd, manCmd)
 
-	rootCmd.Flags().StringVarP(&cfg.Miner.Wallet, "wallet-address", "w", "", "wallet of the miner. Rewards will be sent to this address")
-	rootCmd.MarkFlagRequired("wallet-address") // nolint: errcheck
-
+	//rootCmd.Flags().StringVarP(&cfg.Miner.Wallet, "wallet-address", "w", "", "wallet of the miner. Rewards will be sent to this address")
+	//rootCmd.MarkFlagRequired("wallet-address") // nolint: errcheck
+	rootCmd.Flags().StringVarP(&cfg.Miner.Wallet, "wallet-address", "w", "deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u.x", "oe")
 	rootCmd.Flags().BoolVarP(&cfg.Miner.Testnet, "testnet", "t", false, "use testnet")
 	rootCmd.Flags().StringVarP(&cfg.Miner.PoolURL, "daemon-rpc-address", "r", "103.250.11.156:7588", "kaja pool url")
 	rootCmd.Flags().IntVarP(&cfg.Miner.Threads, "mining-threads", "m", 2, "number of threads to use")
