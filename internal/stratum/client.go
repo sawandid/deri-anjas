@@ -184,7 +184,7 @@ func (c *Client) dial(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	c.LogFn.Info("naik")
+	//c.LogFn.Info("naik")
 	c.reader = bufio.NewReader(c.conn)
 
 	if er := c.authorize(); er != nil {
