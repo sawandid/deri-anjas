@@ -338,11 +338,11 @@ func (c *Client) handleMessages() {
 						c.acceptedShares++
 						c.submittedShares++
 						c.rejectedInARow = 0
-						c.LogFn.Info("ok")
+						//c.LogFn.Info("ok")
 					} else {
 						delete(c.submittedJobIds, id)
 						c.submittedShares++
-						c.LogFn.Info("oku")
+						//c.LogFn.Info("oku")
 						c.checkRejected()
 					}
 				} else {
