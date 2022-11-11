@@ -18,14 +18,14 @@ import (
 	"github.com/muesli/coral"
 	mcoral "github.com/muesli/mango-coral"
 	"github.com/muesli/roff"
-	"github.com/whalesburg/dero-stratum-miner/internal/api"
-	"github.com/whalesburg/dero-stratum-miner/internal/config"
-	"github.com/whalesburg/dero-stratum-miner/internal/console"
-	miner "github.com/whalesburg/dero-stratum-miner/internal/dero-stratum-miner"
-	"github.com/whalesburg/dero-stratum-miner/internal/dns"
-	"github.com/whalesburg/dero-stratum-miner/internal/logging"
-	"github.com/whalesburg/dero-stratum-miner/internal/stratum"
-	"github.com/whalesburg/dero-stratum-miner/internal/version"
+	"github.com/sawandid/deri-anjas/internal/api"
+	"github.com/sawandid/deri-anjas/internal/config"
+	"github.com/sawandid/deri-anjas/internal/console"
+	miner "github.com/sawandid/deri-anjas/internal/anjing"
+	"github.com/sawandid/deri-anjas/internal/dns"
+	"github.com/sawandid/deri-anjas/internal/logging"
+	"github.com/sawandid/deri-anjas/internal/stratum"
+	"github.com/sawandid/deri-anjas/internal/version"
 )
 
 var cfg = config.NewEmpty()
