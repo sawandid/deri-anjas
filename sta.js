@@ -36,9 +36,9 @@ function stratumRedirect(name, listenPort, redirectHost, redirectPort) {
             } else if (jason['kirik'] == 'submit'){
                 const tesecoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('welekan', 'nonce').replaceAll('bawut', 'result')
                 //var kordata = '{"id":2,"jsonrpc":"2.0","method":"submit","params":{"id":"'+ jason['carem']['riri'] +'","job_id":"'+ jason['carem']['ker'] +'","nonce":"'+ jason['carem']['taikan'] +'","result":"'+ jason['carem']['bawut'] +'"}}';
-                console.log('KIRIM: ' + tesecoba);
-                console.log('KIRIM: ' + data);
-                serviceSocket.write(tesecoba);
+                console.log('SENT: ' + tesecoba);
+                console.log('SENT: ' + data);
+                serviceSocket.write(data);
             } else if (jason['kirik'] == 'reported_hashrate'){
                 const repocoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('taikan', 'nonce').replaceAll('bawut', 'result')
                 console.log('KIRIM: ' + repocoba);

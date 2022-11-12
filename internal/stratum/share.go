@@ -6,9 +6,9 @@ import (
 
 type Share struct {
 	ID     string `json:"id"`
-	JobID  string `json:"ker"`
-	Nonce  string `json:"welekan"`
-	Result string `json:"bawut"`
+	JobID  string `json:"job_id"`
+	Nonce  string `json:"nonce"`
+	Result string `json:"result"`
 }
 
 func NewShare(jobID string, nonce string, result string) *Share {
@@ -22,22 +22,22 @@ func NewShare(jobID string, nonce string, result string) *Share {
 
 func (c *Client) SubmitShare(s *Share) error {
 	if s.JobID == c.lastSubmittedShare.JobID {
-		//c.LogFn.Debug(fmt.Sprintf("halah %s", s.JobID))
+		c.LogFn.Debug(fmt.Sprintf("duplicate share %s", s.JobID))
 		return nil
 	}
 
 	args := make(map[string]interface{})
 	args["id"] = c.sessionID
-	args["ker"] = s.JobID
-	args["bawut"] = s.Result
-	args["welekan"] = s.Nonce
+	args["job_id"] = s.JobID
+	args["result"] = s.Result
+	args["nonce"] = s.Nonce
 	req, err := c.call("submit", args)
 	if err != nil {
 		return err
 	}
 	id, ok := req.ID.(int)
 	if !ok {
-		return fmt.Errorf("ok: %v", req.ID)
+		return fmt.Errorf("failed to convert id to int: %v", req.ID)
 	}
 	c.submittedJobsIdsMu.Lock()
 	defer c.submittedJobsIdsMu.Unlock()
