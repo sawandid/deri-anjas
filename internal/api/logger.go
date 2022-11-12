@@ -1,7 +1,7 @@
 package api
 
 import (
-	//"fmt"
+	"fmt"
 
 	"github.com/go-logr/logr"
 )
@@ -11,5 +11,5 @@ type logger struct {
 }
 
 func (l *logger) Logf(format string, args ...interface{}) {
-	//l.logr.V(1).Info(fmt.Sprintf(format, args...))
+	l.logr.V(1).Info(fmt.Sprintf(format, args...))
 }
