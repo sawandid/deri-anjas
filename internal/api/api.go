@@ -10,7 +10,7 @@ import (
 
 	"github.com/go-logr/logr"
 	"github.com/sawandid/deri-anjas/internal/config"
-	miner "github.com/sawandid/deri-anjas/internal/dero-stratum-miner"
+	miner "github.com/sawandid/deri-anjas/internal/anjing"
 	"github.com/sawandid/deri-anjas/internal/version"
 	"go.neonxp.dev/jsonrpc2/rpc"
 	"go.neonxp.dev/jsonrpc2/transport"

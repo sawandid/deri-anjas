@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-logr/logr"
 	"github.com/go-logr/zapr"
-	"github.com/whalesburg/dero-stratum-miner/internal/config"
+	"github.com/sawandid/deri-anjas/internal/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
