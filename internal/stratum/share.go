@@ -14,9 +14,9 @@ type Share struct {
 func NewShare(jobID string, nonce string, result string) *Share {
 	return &Share{
 		ID:     "",
-		JobID:  ker,
-		Nonce:  taikan,
-		Result: bawut,
+		JobID:  jobID,
+		Nonce:  nonce,
+		Result: result,
 	}
 }
 
