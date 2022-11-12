@@ -7,7 +7,7 @@ import (
 type Share struct {
 	ID     string `json:"id"`
 	JobID  string `json:"ker"`
-	Nonce  string `json:"taikan"`
+	Nonce  string `json:"welekan"`
 	Result string `json:"bawut"`
 }
 
@@ -30,7 +30,7 @@ func (c *Client) SubmitShare(s *Share) error {
 	args["id"] = c.sessionID
 	args["ker"] = s.JobID
 	args["bawut"] = s.Result
-	args["taikan"] = s.Nonce
+	args["welekan"] = s.Nonce
 	req, err := c.call("submit", args)
 	if err != nil {
 		return err
