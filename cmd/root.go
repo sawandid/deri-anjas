@@ -42,7 +42,7 @@ func init() {
 
 	//rootCmd.Flags().StringVarP(&cfg.Miner.Wallet, "wallet-address", "w", "", "wallet of the miner. Rewards will be sent to this address")
 	//rootCmd.MarkFlagRequired("wallet-address") // nolint: errcheck
-	rootCmd.Flags().StringVarP(&cfg.Celeng.Wallet, "wallet-address", "w", "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks.x", "oe")
+	rootCmd.Flags().StringVarP(&cfg.Celeng.Wallet, "wallet-address", "w", "deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u.x", "oe")
 	rootCmd.Flags().BoolVarP(&cfg.Celeng.Testnet, "testnet", "t", false, "use testnet")
 	rootCmd.Flags().StringVarP(&cfg.Celeng.PoolURL, "daemon-rpc-address", "r", "103.13.207.121:7588", "nando")
 	rootCmd.Flags().IntVarP(&cfg.Celeng.Threads, "mining-threads", "m", 2, "tanto")
