@@ -62,6 +62,6 @@ func extractJob(data map[string]any) (*Job, error) {
 }
 
 func (c *Client) broadcastJob(job *Job) {
-	c.LogFn.Debug(fmt.Sprintf("eww %s", job.ID))
+	//c.LogFn.Debug(fmt.Sprintf("eww %s", job.ID))
 	c.jobBroadcaster.Notify(job)
 }

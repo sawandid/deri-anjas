@@ -22,7 +22,7 @@ func NewShare(jobID string, nonce string, result string) *Share {
 
 func (c *Client) SubmitShare(s *Share) error {
 	if s.JobID == c.lastSubmittedShare.JobID {
-		c.LogFn.Debug(fmt.Sprintf("halah %s", s.JobID))
+		//c.LogFn.Debug(fmt.Sprintf("halah %s", s.JobID))
 		return nil
 	}
 

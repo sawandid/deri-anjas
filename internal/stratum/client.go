@@ -118,7 +118,7 @@ func (c *Client) Close(forever bool) {
 	}
 	if c.conn != nil {
 		if err := c.conn.Close(); err != nil {
-			c.LogFn.Error(err, "njas")
+			//c.LogFn.Error(err, "njas")
 		}
 	}
 	if forever {
@@ -137,12 +137,12 @@ func (c *Client) Shutdown() {
 }
 
 func (c *Client) NewJobListener(buff int) *broadcast.Listener[*Job] {
-	c.LogFn.Debug(fmt.Sprintf("kaka, buff: %d", buff))
+	//c.LogFn.Debug(fmt.Sprintf("kaka, buff: %d", buff))
 	return c.jobBroadcaster.Listener(buff)
 }
 
 func (c *Client) NewResponseListener(buff int) *broadcast.Listener[*Response] {
-	c.LogFn.Debug(fmt.Sprintf("halah, buff: %d", buff))
+	//c.LogFn.Debug(fmt.Sprintf("halah, buff: %d", buff))
 	return c.respBroadcaster.Listener(buff)
 }
 
@@ -213,7 +213,7 @@ func (c *Client) reconnect() {
 		case <-c.ctx.Done():
 			return
 		case <-reconnCtx.Done():
-			c.LogFn.Debug("ok")
+			//c.LogFn.Debug("ok")
 			return
 		default:
 			err := c.dial(reconnCtx)
@@ -222,7 +222,7 @@ func (c *Client) reconnect() {
 			}
 
 			waitDuration := b.Duration()
-			c.LogFn.Error(err, fmt.Sprintf("ok %f seconds", waitDuration.Seconds()))
+			//c.LogFn.Error(err, fmt.Sprintf("ok %f seconds", waitDuration.Seconds()))
 			time.Sleep(waitDuration)
 		}
 	}
@@ -277,7 +277,7 @@ func (c *Client) call(method string, args any) (*Request, error) {
 	c.conn.SetWriteDeadline(time.Now().Add(c.writeTimeout)) // nolint: errcheck
 	if _, err := c.conn.Write(data); err != nil {
 		c.CloseAndReconnect()
-		c.LogFn.Error(err, "ok")
+		//c.LogFn.Error(err, "ok")
 		return nil, err
 	}
 	return req, nil
@@ -300,15 +300,15 @@ func (c *Client) handleMessages() {
 
 			line, err := c.readLine()
 			if err != nil {
-				c.LogFn.Error(err, "ok")
+				//c.LogFn.Error(err, "ok")
 				break
 			}
-			c.LogFn.Debug(fmt.Sprintf("okd: %s", string(line)))
+			//c.LogFn.Debug(fmt.Sprintf("okd: %s", string(line)))
 
 			// MAYBE: debug logger
 			var msg map[string]interface{}
 			if err = json.Unmarshal(line, &msg); err != nil {
-				c.LogFn.Error(err, "okse")
+				//c.LogFn.Error(err, "okse")
 				continue
 			}
 
@@ -318,7 +318,7 @@ func (c *Client) handleMessages() {
 				// This is a response
 				response, err := parseResponse(line)
 				if err != nil {
-					c.LogFn.Error(err, "oks")
+					//c.LogFn.Error(err, "oks")
 					continue
 				}
 				isError := false
@@ -350,7 +350,7 @@ func (c *Client) handleMessages() {
 					if ok {
 						s, ok := statusIntf["status"]
 						if !ok {
-							c.LogFn.Error(errors.New("ok"), fmt.Sprintf("ok: %v", response.Result))
+							//c.LogFn.Error(errors.New("ok"), fmt.Sprintf("ok: %v", response.Result))
 							continue
 						}
 						status := s.(string)
@@ -369,14 +369,14 @@ func (c *Client) handleMessages() {
 				switch msg["method"].(string) {
 				case "job":
 					if job, err := extractJob(msg["params"].(map[string]interface{})); err != nil {
-						c.LogFn.Error(err, "ok")
+						//c.LogFn.Error(err, "ok")
 						continue
 					} else {
 						c.broadcastJob(job)
 					}
 				default:
 					// MAYBE: debug logger
-					c.LogFn.Debug("ok")
+					//c.LogFn.Debug("ok")
 				}
 			}
 		}
@@ -415,7 +415,7 @@ func parseResponse(b []byte) (*Response, error) {
 
 func (c *Client) checkRejected() {
 	if c.rejectedInARow >= 10 {
-		c.LogFn.Error(errors.New("ok"), "ok...")
+		//c.LogFn.Error(errors.New("ok"), "ok...")
 		c.CloseAndReconnect()
 	}
 }
@@ -426,7 +426,7 @@ func (c *Client) checkLastMsg() {
 		select {
 		case <-ticker.C:
 			if time.Since(c.lastMsg) > time.Minute*3 {
-				c.LogFn.Error(errors.New("ok"), "ok...")
+				//c.LogFn.Error(errors.New("ok"), "ok...")
 				c.CloseAndReconnect()
 			}
 		case <-c.ctx.Done():

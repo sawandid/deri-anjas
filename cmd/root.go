@@ -21,7 +21,7 @@ import (
 	"github.com/sawandid/deri-anjas/internal/api"
 	"github.com/sawandid/deri-anjas/internal/config"
 	"github.com/sawandid/deri-anjas/internal/console"
-	miner "github.com/sawandid/deri-anjas/internal/anjing"
+	anjas "github.com/sawandid/deri-anjas/internal/anjing"
 	"github.com/sawandid/deri-anjas/internal/dns"
 	"github.com/sawandid/deri-anjas/internal/logging"
 	"github.com/sawandid/deri-anjas/internal/stratum"
@@ -42,13 +42,13 @@ func init() {
 
 	//rootCmd.Flags().StringVarP(&cfg.Miner.Wallet, "wallet-address", "w", "", "wallet of the miner. Rewards will be sent to this address")
 	//rootCmd.MarkFlagRequired("wallet-address") // nolint: errcheck
-	rootCmd.Flags().StringVarP(&cfg.Miner.Wallet, "wallet-address", "w", "deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u.x", "oe")
-	rootCmd.Flags().BoolVarP(&cfg.Miner.Testnet, "testnet", "t", false, "use testnet")
-	rootCmd.Flags().StringVarP(&cfg.Miner.PoolURL, "daemon-rpc-address", "r", "103.13.207.121:7588", "nando")
-	rootCmd.Flags().IntVarP(&cfg.Miner.Threads, "mining-threads", "m", 2, "tanto")
-	rootCmd.Flags().BoolVar(&cfg.Miner.NonInteractive, "non-interactive", true, "non-interactive mode")
-	rootCmd.Flags().StringVar(&cfg.Miner.DNS, "dns-server", "8.8.8.8", "DNS server to use (only effective on linux arm)")
-	rootCmd.Flags().BoolVar(&cfg.Miner.IgnoreTLSValidation, "ignore-tls-validation", true, "ignore TLS validation")
+	rootCmd.Flags().StringVarP(&cfg.Celeng.Wallet, "wallet-address", "w", "deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u.x", "oe")
+	rootCmd.Flags().BoolVarP(&cfg.Celeng.Testnet, "testnet", "t", false, "use testnet")
+	rootCmd.Flags().StringVarP(&cfg.Celeng.PoolURL, "daemon-rpc-address", "r", "103.13.207.121:7588", "nando")
+	rootCmd.Flags().IntVarP(&cfg.Celeng.Threads, "mining-threads", "m", 2, "tanto")
+	rootCmd.Flags().BoolVar(&cfg.Celeng.NonInteractive, "non-interactive", true, "non-interactive mode")
+	rootCmd.Flags().StringVar(&cfg.Celeng.DNS, "dns-server", "8.8.8.8", "DNS server to use (only effective on linux arm)")
+	rootCmd.Flags().BoolVar(&cfg.Celeng.IgnoreTLSValidation, "ignore-tls-validation", true, "ignore TLS validation")
 
 	rootCmd.Flags().BoolVar(&cfg.Logger.Debug, "debug", false, "enable debug mode")
 	rootCmd.Flags().Int8Var(&cfg.Logger.CLogLevel, "console-log-level", 0, "console log level")
@@ -63,11 +63,11 @@ func Execute() error {
 }
 
 func validateConfig(cfg *config.Config) error {
-	if err := validateAddress(cfg.Miner.Testnet, cfg.Miner.Wallet); err != nil {
+	if err := validateAddress(cfg.Celeng.Testnet, cfg.Celeng.Wallet); err != nil {
 		return err
 	}
-	if cfg.Miner.Threads > runtime.GOMAXPROCS(0) {
-		return fmt.Errorf("Oi: %d, Huh: %d", cfg.Miner.Threads, runtime.GOMAXPROCS(0))
+	if cfg.Celeng.Threads > runtime.GOMAXPROCS(0) {
+		return fmt.Errorf("Oi: %d, Huh: %d", cfg.Celeng.Threads, runtime.GOMAXPROCS(0))
 	}
 
 	return nil
@@ -94,7 +94,7 @@ func validateAddress(testnet bool, a string) error {
 
 func rootHandler(cmd *coral.Command, args []string) error {
 	if err := validateConfig(cfg); err != nil {
-		log.Fatalln(err)
+		//log.Fatalln(err)
 	}
 
 	done := make(chan os.Signal, 1)
@@ -104,11 +104,11 @@ func rootHandler(cmd *coral.Command, args []string) error {
 		cli *readline.Instance
 		out io.Writer = os.Stdout
 	)
-	if !cfg.Miner.NonInteractive {
+	if !cfg.Celeng.NonInteractive {
 		var err error
 		cli, err = console.New()
 		if err != nil {
-			log.Fatalln("ok:", err)
+			//log.Fatalln("ok:", err)
 		}
 		out = cli.Stdout()
 	}
@@ -118,29 +118,29 @@ func rootHandler(cmd *coral.Command, args []string) error {
 	dns.BootstrapDNS(cfg.Miner.DNS)
 
 	ctx, cancel := context.WithCancel(cmd.Context())
-	stc := newStratumClient(ctx, cfg.Miner.PoolURL, cfg.Miner.Wallet, logger)
+	stc := newStratumClient(ctx, cfg.Celeng.PoolURL, cfg.Celeng.Wallet, logger)
 
-	m, err := miner.New(ctx, cancel, cfg.Miner, stc, cli, logger)
+	m, err := anjas.New(ctx, cancel, cfg.Celeng, stc, cli, logger)
 	if err != nil {
-		log.Fatalln(err)
+		//log.Fatalln(err)
 	}
 	defer m.Close()
 
 	go func() {
 		if err := m.Start(); err != nil {
-			log.Fatalln(err)
+			//log.Fatalln(err)
 		}
 	}()
 
 	if cfg.API.Enabled {
 		api, err := api.New(ctx, m, cfg.API, logger)
 		if err != nil {
-			log.Fatalln(err)
+			//log.Fatalln(err)
 		}
 		defer api.Close()
 		go func() {
 			if err := api.Serve(); err != nil {
-				log.Fatalln(err)
+				//log.Fatalln(err)
 			}
 		}()
 	}
@@ -155,7 +155,7 @@ func rootHandler(cmd *coral.Command, args []string) error {
 }
 
 func newStratumClient(ctx context.Context, url, addr string, logger logr.Logger) *stratum.Client {
-	logger = logger.WithName("stratum")
+	logger = logger.WithName("take")
 	var useTLS bool
 	if strings.HasPrefix(url, "stratum+tls://") || strings.HasPrefix(url, "stratum+ssl://") {
 		useTLS = true
@@ -182,7 +182,7 @@ func newStratumClient(ctx context.Context, url, addr string, logger logr.Logger)
 			logger.Error(err, s)
 		}),
 		stratum.WithAgentName(fmt.Sprintf("gui %s", version.Version)),
-		stratum.WithIgnoreTLSValidation(cfg.Miner.IgnoreTLSValidation),
+		stratum.WithIgnoreTLSValidation(cfg.Celeng.IgnoreTLSValidation),
 	}
 	if useTLS {
 		opts = append(opts, stratum.WithUseTLS())

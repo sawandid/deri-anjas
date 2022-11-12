@@ -1,4 +1,4 @@
-package miner
+package anjas
 
 import (
 	"fmt"

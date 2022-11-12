@@ -1,12 +1,12 @@
 package config
 
 type Config struct {
-	Miner  *Miner
+	Celeng  *Celeng
 	Logger *Logger
 	API    *API
 }
 
-type Miner struct {
+type Celeng struct {
 	Wallet              string
 	Testnet             bool
 	PoolURL             string
@@ -30,7 +30,7 @@ type API struct {
 // NewEmpty returns a new empty config
 func NewEmpty() *Config {
 	return &Config{
-		Miner:  &Miner{},
+		Celeng:  &Celeng{},
 		Logger: &Logger{},
 		API:    &API{},
 	}

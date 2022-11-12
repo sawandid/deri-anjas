@@ -57,19 +57,19 @@ func WithIgnoreTLSValidation(ignoreTLSValidation bool) Opts {
 
 func WithDebugLogger(logger func(string)) Opts {
 	return func(c *Client) {
-		c.LogFn.Debug = logger
+		//c.LogFn.Debug = logger
 	}
 }
 
 func WithInfoLogger(logger func(string)) Opts {
 	return func(c *Client) {
-		c.LogFn.Info = logger
+		//c.LogFn.Info = logger
 	}
 }
 
 func WithErrorLogger(logger func(error, string)) Opts {
 	return func(c *Client) {
-		c.LogFn.Error = logger
+		//c.LogFn.Error = logger
 	}
 }
 

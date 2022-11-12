@@ -10,7 +10,7 @@ import (
 
 	"github.com/go-logr/logr"
 	"github.com/sawandid/deri-anjas/internal/config"
-	miner "github.com/sawandid/deri-anjas/internal/anjing"
+	anjas "github.com/sawandid/deri-anjas/internal/anjing"
 	"github.com/sawandid/deri-anjas/internal/version"
 	"go.neonxp.dev/jsonrpc2/rpc"
 	"go.neonxp.dev/jsonrpc2/transport"
@@ -22,10 +22,10 @@ type Server struct {
 	listen    string
 	startTime time.Time
 	r         *rpc.RpcServer
-	m         *miner.Client
+	m         *anjas.Client
 }
 
-func New(ctx context.Context, m *miner.Client, cfg *config.API, logr logr.Logger) (*Server, error) {
+func New(ctx context.Context, m *anjas.Client, cfg *config.API, logr logr.Logger) (*Server, error) {
 	var tsp transport.Transport
 	switch cfg.Transport {
 	case "tcp":
