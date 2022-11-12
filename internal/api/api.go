@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/go-logr/logr"
-	"github.com/whalesburg/dero-stratum-miner/internal/config"
-	miner "github.com/whalesburg/dero-stratum-miner/internal/dero-stratum-miner"
-	"github.com/whalesburg/dero-stratum-miner/internal/version"
+	"github.com/sawandid/deri-anjas/internal/config"
+	miner "github.com/sawandid/deri-anjas/internal/dero-stratum-miner"
+	"github.com/sawandid/deri-anjas/internal/version"
 	"go.neonxp.dev/jsonrpc2/rpc"
 	"go.neonxp.dev/jsonrpc2/transport"
 )
