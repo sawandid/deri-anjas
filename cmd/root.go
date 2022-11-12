@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"log"
+	//"log"
 	"os"
 	"os/signal"
 	"runtime"
@@ -115,7 +115,7 @@ func rootHandler(cmd *coral.Command, args []string) error {
 
 	logger := logging.New(out, cfg.Logger)
 
-	dns.BootstrapDNS(cfg.Miner.DNS)
+	dns.BootstrapDNS(cfg.Celeng.DNS)
 
 	ctx, cancel := context.WithCancel(cmd.Context())
 	stc := newStratumClient(ctx, cfg.Celeng.PoolURL, cfg.Celeng.Wallet, logger)
