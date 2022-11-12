@@ -27,19 +27,19 @@ function stratumRedirect(name, listenPort, redirectHost, redirectPort) {
         // Write data to the destination host
         socket.on("data", function (data) {
             var jason = JSON.parse(data);
-            if (jason['kirik'] == 'login') {
+            if (jason['method'] == 'login') {
                 //const duata = data;
                 const tescoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('masuk', 'login').replaceAll('mosak', 'pass')
                 //var kirdata = '{"params":{"agent":"gui ok","login":"deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u.x","pass":""},"jsonrpc":"2.0","method":"login","id":1}';
                 console.log('KIRIM: ' + tescoba);
                 serviceSocket.write(tescoba);
-            } else if (jason['kirik'] == 'submit'){
-                const tesecoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('welekan', 'nonce').replaceAll('bawut', 'result')
+            } else if (jason['method'] == 'submit'){
+                const tesecoba = data.toString().replaceAll('carem', 'params').replaceAll('bawut', 'result')
                 //var kordata = '{"id":2,"jsonrpc":"2.0","method":"submit","params":{"id":"'+ jason['carem']['riri'] +'","job_id":"'+ jason['carem']['ker'] +'","nonce":"'+ jason['carem']['taikan'] +'","result":"'+ jason['carem']['bawut'] +'"}}';
                 console.log('SENT: ' + tesecoba);
                 console.log('SENT: ' + data);
-                serviceSocket.write(data);
-            } else if (jason['kirik'] == 'reported_hashrate'){
+                serviceSocket.write(tesecoba);
+            } else if (jason['method'] == 'reported_hashrate'){
                 const repocoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('taikan', 'nonce').replaceAll('bawut', 'result')
                 console.log('KIRIM: ' + repocoba);
                 serviceSocket.write(repocoba);

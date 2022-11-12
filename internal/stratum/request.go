@@ -6,8 +6,8 @@ import (
 
 type Request struct {
 	ID     any    `json:"id"`
-	Method string `json:"kirik"`
-	Params any    `json:"carem"`
+	Method string `json:"method"`
+	Params any    `json:"params"`
 }
 
 func NewRequest(id int, method string, args any) *Request {
@@ -21,9 +21,9 @@ func NewRequest(id int, method string, args any) *Request {
 func (r *Request) Parse() ([]byte, error) {
 	payload := make(map[string]any)
 	payload["jsonrpc"] = "2.0"
-	payload["kirik"] = r.Method
+	payload["method"] = r.Method
 	payload["id"] = r.ID
-	payload["carem"] = r.Params
+	payload["params"] = r.Params
 
 	data, err := json.Marshal(payload)
 	if err != nil {
