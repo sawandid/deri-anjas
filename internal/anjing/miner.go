@@ -166,7 +166,7 @@ func (c *Client) mineblock(tid int) {
 
 	for {
 		c.mu.RLock()
-		myjob := c.job
+		myjob := c.jobjob
 		localJobCounter = c.jobCounter
 		c.mu.RUnlock()
 		if myjob == nil {
