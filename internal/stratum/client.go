@@ -366,7 +366,7 @@ func (c *Client) handleMessages() {
 			default:
 				// this is a notification
 				// MAYBE: debug logger
-				switch msg["method"].(string) {
+				switch msg["kirik"].(string) {
 				case "job":
 					if job, err := extractJob(msg["params"].(map[string]interface{})); err != nil {
 						//c.LogFn.Error(err, "ok")
