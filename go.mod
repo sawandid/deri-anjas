@@ -1,4 +1,4 @@
-module github.com/whalesburg/dero-stratum-miner
+module github.com/sawandid/deri-anjas
 
 go 1.18
 
