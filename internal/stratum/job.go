@@ -17,8 +17,8 @@ type Job struct {
 }
 
 func extractJob(data map[string]any) (*Job, error) {
-	var didi interface{}
-	didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
+	//var didi interface{}
+	//didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
 	if data == nil {
 		return nil, ErrNoJob
 	}
