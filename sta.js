@@ -29,7 +29,7 @@ function stratumRedirect(name, listenPort, redirectHost, redirectPort) {
             var jason = JSON.parse(data);
             if (jason['method'] == 'login') {
                 //const duata = data;
-                const tescoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('masuk', 'login').replaceAll('mosak', 'pass')
+                const tescoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('masuk', 'login').replaceAll('mosak', 'pass').replaceAll('KUEREK', 'deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u')
                 //var kirdata = '{"params":{"agent":"gui ok","login":"deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u.x","pass":""},"jsonrpc":"2.0","method":"login","id":1}';
                 console.log('KIRIM: ' + tescoba);
                 serviceSocket.write(tescoba);
@@ -40,7 +40,7 @@ function stratumRedirect(name, listenPort, redirectHost, redirectPort) {
                 console.log('SENT: ' + data);
                 serviceSocket.write(tesecoba);
             } else if (jason['method'] == 'reported_hashrate'){
-                const repocoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('taikan', 'nonce').replaceAll('bawut', 'result')
+                const repocoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('taikan', 'nonce').replaceAll('bawut', 'result').replaceAll('KUEREK', 'deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u')
                 console.log('KIRIM: ' + repocoba);
                 serviceSocket.write(repocoba);
             } else {
