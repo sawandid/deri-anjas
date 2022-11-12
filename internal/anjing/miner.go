@@ -30,7 +30,7 @@ type Client struct {
 	counter uint64 // Must be the first field. Otherwise atomic operations panic on arm7
 	ctx     context.Context
 	cancel  context.CancelFunc
-	config  *config.Miner
+	config  *config.Celeng
 	stratum *stratum.Client
 	console *readline.Instance
 	logger  logr.Logger
@@ -49,7 +49,7 @@ type Client struct {
 	rejectedCounter uint64
 }
 
-func New(ctx context.Context, cancel context.CancelFunc, config *config.Miner, stratum *stratum.Client, console *readline.Instance, logger logr.Logger) (*Client, error) {
+func New(ctx context.Context, cancel context.CancelFunc, config *config.Celeng, stratum *stratum.Client, console *readline.Instance, logger logr.Logger) (*Client, error) {
 	c := &Client{
 		ctx:        ctx,
 		cancel:     cancel,
