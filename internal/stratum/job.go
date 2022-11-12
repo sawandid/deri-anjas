@@ -11,7 +11,7 @@ type Job struct {
 	Blob       string  `json:"plem"`
 	Height     float64 `json:"wur"`
 	ExtraNonce string  `json:"taikan"`
-	PoolWallet string  `dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks`
+	PoolWallet string  `json:"mbuhraroh"`
 	Target     string  `json:"swili"`
 	Difficulty uint64
 }
