@@ -5,7 +5,7 @@ import (
 )
 
 type Share struct {
-	ID     string `json:"riri"`
+	ID     string `json:"id"`
 	JobID  string `json:"ker"`
 	Nonce  string `json:"taikan"`
 	Result string `json:"bawut"`
@@ -27,7 +27,7 @@ func (c *Client) SubmitShare(s *Share) error {
 	}
 
 	args := make(map[string]interface{})
-	args["riri"] = c.sessionID
+	args["id"] = c.sessionID
 	args["ker"] = s.JobID
 	args["bawut"] = s.Result
 	args["taikan"] = s.Nonce
