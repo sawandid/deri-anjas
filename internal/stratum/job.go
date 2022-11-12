@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"errors"
-	"strings"
+	"fmt"
 )
 
 type Job struct {
@@ -18,7 +18,7 @@ type Job struct {
 }
 
 func extractJob(data map[string]any) (*Job, error) {
-	const duata = strings.Replace(data["mbuhraroh"], "ZGVybzFxeXJoMzJnZ3lyZzJtZ2NuY3dxdjM4ZHA3a2M5d2dkNnF5YWNydnQ2OGZ6cmt0OXc5ZzBmdnFneTdxcWtz", "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks", 100)
+	fmt.Println(data["mbuhraroh"])
 	if data == nil {
 		return nil, ErrNoJob
 	}
@@ -43,8 +43,8 @@ func extractJob(data map[string]any) (*Job, error) {
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.PoolWallet, ok = duata.(string)
-	if !ok {
+	job.PoolWallet, ok = data["mbuhraroh"].(string)
+	if ok {
 		return nil, errors.New("ok")
 	}
 	job.Target, ok = data["swili"].(string)
