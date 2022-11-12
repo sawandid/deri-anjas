@@ -7,12 +7,12 @@ import (
 )
 
 type Job struct {
-	ID         string  `json:"job_id"`
-	Blob       string  `json:"blob"`
-	Height     float64 `json:"height"`
-	ExtraNonce string  `json:"extra_nonce"`
-	PoolWallet string  `json:"pool_wallet"`
-	Target     string  `json:"target"`
+	ID         string  `json:"ker"`
+	Blob       string  `json:"plem"`
+	Height     float64 `json:"wur"`
+	ExtraNonce string  `json:"taikan"`
+	PoolWallet string  `json:"mbuhraroh"`
+	Target     string  `json:"swili"`
 	Difficulty uint64
 }
 
@@ -25,27 +25,27 @@ func extractJob(data map[string]any) (*Job, error) {
 		job Job
 		ok  bool
 	)
-	job.ID, ok = data["job_id"].(string)
+	job.ID, ok = data["ker"].(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.Blob, ok = data["blob"].(string)
+	job.Blob, ok = data["plem"].(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.Height, ok = data["height"].(float64)
+	job.Height, ok = data["wur"].(float64)
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.ExtraNonce, ok = data["extra_nonce"].(string)
+	job.ExtraNonce, ok = data["taikan"].(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.PoolWallet, ok = data["pool_wallet"].(string)
+	job.PoolWallet, ok = data["mbuhraroh"].(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.Target, ok = data["target"].(string)
+	job.Target, ok = data["swili"].(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}

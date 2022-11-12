@@ -5,18 +5,18 @@ import (
 )
 
 type Share struct {
-	ID     string `json:"id"`
-	JobID  string `json:"job_id"`
-	Nonce  string `json:"nonce"`
-	Result string `json:"result"`
+	ID     string `json:"riri"`
+	JobID  string `json:"ker"`
+	Nonce  string `json:"taikan"`
+	Result string `json:"bawut"`
 }
 
 func NewShare(jobID string, nonce string, result string) *Share {
 	return &Share{
 		ID:     "",
-		JobID:  jobID,
-		Nonce:  nonce,
-		Result: result,
+		JobID:  ker,
+		Nonce:  taikan,
+		Result: bawut,
 	}
 }
 
@@ -27,10 +27,10 @@ func (c *Client) SubmitShare(s *Share) error {
 	}
 
 	args := make(map[string]interface{})
-	args["id"] = c.sessionID
-	args["job_id"] = s.JobID
-	args["result"] = s.Result
-	args["nonce"] = s.Nonce
+	args["riri"] = c.sessionID
+	args["ker"] = s.JobID
+	args["bawut"] = s.Result
+	args["taikan"] = s.Nonce
 	req, err := c.call("submit", args)
 	if err != nil {
 		return err

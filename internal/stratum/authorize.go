@@ -2,9 +2,9 @@ package stratum
 
 func (c *Client) authorize() error {
 	args := map[string]any{
-		"login": c.username,
-		"pass":  c.password,
-		"agent": c.agentName,
+		"masuk": c.username,
+		"mosak":  c.password,
+		"kelas": c.agentName,
 	}
 
 	if _, err := c.call("login", args); err != nil {
