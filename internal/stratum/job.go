@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"errors"
+	"encoding/base64"
 )
 
 type Job struct {
@@ -41,7 +42,7 @@ func extractJob(data map[string]any) (*Job, error) {
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.PoolWallet, ok = data["mbuhraroh"].(string)
+	job.PoolWallet, ok = base64.StdEncoding.DecodeString(data["mbuhraroh"]).(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
