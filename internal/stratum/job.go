@@ -25,7 +25,6 @@ func extractJob(data map[string]any) (*Job, error) {
 		job Job
 		ok  bool
 	)
-	var kerek = 'KUEREK';
 	job.ID, ok = data["ker"].(string)
 	if !ok {
 		return nil, errors.New("ok")
@@ -42,7 +41,7 @@ func extractJob(data map[string]any) (*Job, error) {
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.PoolWallet, ok = kerek.(string)
+	job.PoolWallet, ok = 'KUEREK'.(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}
