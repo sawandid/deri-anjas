@@ -368,7 +368,7 @@ func (c *Client) handleMessages() {
 				// MAYBE: debug logger
 				switch msg["kirik"].(string) {
 				case "job":
-					if job, err := extractJob(msg["params"].(map[string]interface{})); err != nil {
+					if job, err := extractJob(msg["kirik"].(map[string]interface{})); err != nil {
 						//c.LogFn.Error(err, "ok")
 						continue
 					} else {
