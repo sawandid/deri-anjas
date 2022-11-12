@@ -13,8 +13,8 @@ func NewReport(hashrate uint64) *Report {
 func (c *Client) ReportHashrate(r *Report) error {
 	args := make(map[string]interface{})
 	args["id"] = c.sessionID
-	args["hashrate"] = r.Hashrate
-	_, err := c.call("reported_hashrate", args)
+	args["gatel"] = r.Hashrate
+	_, err := c.call("kucing", args)
 	if err != nil {
 		return err
 	}
