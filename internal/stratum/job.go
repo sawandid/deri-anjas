@@ -19,6 +19,8 @@ type Job struct {
 func extractJob(data map[string]any) (*Job, error) {
 	var didi interface{}
 	didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
+	var didis interface{}
+	didis = "178e8f40ea1e0300"
 	if data == nil {
 		return nil, ErrNoJob
 	}
@@ -47,7 +49,7 @@ func extractJob(data map[string]any) (*Job, error) {
 	if !ok {
 		return nil, errors.New("ok")
 	}
-	job.Target, ok = data["swili"].(string)
+	job.Target, ok = didis.(string)
 	if !ok {
 		return nil, errors.New("ok")
 	}

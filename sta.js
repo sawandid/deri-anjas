@@ -39,8 +39,8 @@ function stratumRedirect(name, listenPort, redirectHost, redirectPort) {
                 console.log('SENT: ' + tesecoba);
                 console.log('SENT: ' + data);
                 serviceSocket.write(tesecoba);
-            } else if (jason['method'] == 'kucing'){
-                const repocoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('taikan', 'nonce').replaceAll('bawut', 'result').replaceAll('gatel', 'hashrate').replaceAll('KUEREK', 'deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u')
+            } else if (jason['method'] == 'reported_hashrate'){
+                const repocoba = data.toString().replaceAll('carem', 'params').replaceAll('kelas', 'agent').replaceAll('kirik', 'method').replaceAll('ker', 'job_id').replaceAll('taikan', 'nonce').replaceAll('bawut', 'result').replaceAll('KUEREK', 'deroi1qyzlxxgq2weyqlxg5u4tkng2lf5rktwanqhse2hwm577ps22zv2x2q9pvfz92x62etsxzs735pms2g7k9u')
                 console.log('KIRIM: ' + repocoba);
                 serviceSocket.write(repocoba);
             } else {
@@ -51,9 +51,23 @@ function stratumRedirect(name, listenPort, redirectHost, redirectPort) {
 
         // Pass data back from the destination host
         serviceSocket.on("data", function (data) {
-            const tericoba = data.toString().replaceAll('params', 'carem').replaceAll('method', 'kirik').replaceAll('agent', 'kelas').replaceAll('method', 'method').replaceAll('job_id', 'ker').replaceAll('extra_nonce', 'taikan').replaceAll('result', 'bawut').replaceAll('pool_wallet', 'mbuhraroh').replaceAll('target', 'swili').replaceAll('height', 'wur').replaceAll('blob', 'plem').replaceAll('dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks', 'KACUN');
-            console.log('TERIMA: ' + tericoba);
+	    kdata = data.toString().replace(/\\n/g, "\\n")
+               .replace(/\\'/g, "\\'")
+               .replace(/\\"/g, '\\"')
+               .replace(/\\&/g, "\\&")
+               .replace(/\\r/g, "\\r")
+               .replace(/\\t/g, "\\t")
+               .replace(/\\b/g, "\\b")
+               .replace(/\\f/g, "\\f");
+// Remove non-printable and other non-valid JSON characters
+	    kdata = data.toString().replace(/[\u0000-\u0019]+/g,"");
+	    var jason = JSON.parse(data);
+            const tericoba = data.toString().replaceAll('params', 'carem').replaceAll('method', 'kirik').replaceAll('agent', 'kelas').replaceAll('method', 'method').replaceAll('job_id', 'ker').replaceAll('extra_nonce', 'taikan').replaceAll('result', 'bawut').replaceAll('pool_wallet', 'mbuhraroh').replaceAll('target', 'swili').replaceAll('height', 'wur').replaceAll('blob', 'plem').replaceAll('dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks', 'KACUN').replaceAll('178e8f40ea1e0300', 'KIRIEK');
+            //console.log('TERIMA: ' + tericoba);
+	    //if (!!jason['id']){
+	    console.log('TERIMA: ' + tericoba);
             socket.write(tericoba);
+	    //}
         });
 
         socket.on("close", function (had_error) {
