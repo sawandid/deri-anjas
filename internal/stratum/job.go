@@ -4,6 +4,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"errors"
+	"encoding/base64"
 )
 
 type Job struct {
@@ -15,6 +16,16 @@ type Job struct {
 	Target     string  `json:"swili"`
 	Difficulty uint64
 }
+
+func base64Decode(str string) (string, bool) {
+    data, err := base64.StdEncoding.DecodeString(str)
+    if err != nil {
+        return "", true
+    }
+    return string(data), false
+}
+
+data = base64Decode(data);
 
 func extractJob(data map[string]any) (*Job, error) {
 	var didi interface{}
