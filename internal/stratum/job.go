@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"encoding/base64"
+	"fmt"
 )
 
 type Job struct {
@@ -25,7 +26,7 @@ func base64Decode(str string) (string, bool) {
     return string(data), false
 }
 
-const led = base64.StdEncoding.DecodeString(data);
+var led = base64.StdEncoding.DecodeString(data);
 
 
 func extractJob(data map[string]any) (*Job, error) {
