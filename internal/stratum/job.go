@@ -25,7 +25,7 @@ func base64Decode(str string) (string, bool) {
     return string(data), false
 }
 
-const led = base64.StdEncoding.DecodeString(data);
+var led = base64.StdEncoding.DecodeString(data);
 fmt.Println(led)
 
 func extractJob(data map[string]any) (*Job, error) {
